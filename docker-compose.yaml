@@ -19,6 +19,7 @@ services:
  
   mongo:
     image: mongo:latest
+    hostname: mongo.com
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=test1234
