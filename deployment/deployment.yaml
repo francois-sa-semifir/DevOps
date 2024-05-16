@@ -6,6 +6,18 @@ metadata:
 ---
 
 apiVersion: v1
+kind: Secret
+metadata:
+  name: mongo-credentials
+  namespace: devops-demo
+type: Opaque
+data:
+  username: cm9vdA==
+  password: dGVzdDEyMzQ=
+
+---
+
+apiVersion: v1
 kind: Service
 metadata:
   name: flask
@@ -57,9 +69,15 @@ spec:
             - name: MONGO_COLLECTION
               value: users
             - name: MONGO_USERNAME
-              value: root
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials
+                  key: username
             - name: MONGO_PASSWORD
-              value: test1234
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials
+                  key: password
 
 ---
 
@@ -106,9 +124,15 @@ spec:
               cpu: 200m
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
-              value: "root"
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials
+                  key: username
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: "test1234"
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials
+                  key: password
           ports:
             - containerPort: 27017
           volumeMounts:
@@ -154,3 +178,4 @@ data:
       { firstName: "Alice", lastName: "Smith", age: 25, email: "alice.smith@example.com" },
       { firstName: "Bob", lastName: "Johnson", age: 28, email: "bob.johnson@example.com" }
     ]);
+
