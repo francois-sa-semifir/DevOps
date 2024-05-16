@@ -15,13 +15,13 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Build the Docker image
-      run: docker build ./App -t ${{ secrets.DOCKER_USERNAME }}/projet-flask-app-V0.1:${{ github.sha }}
+      run: docker build ./App -t ${{ secrets.DOCKER_USERNAME }}/projet/flask-app:v0.1:${{ github.sha }}
       
     - name: Log in to Docker Registry
       run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       
     - name: Push the Docker image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/projet-flask-app-V0.1:${{ github.sha }}
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/projet/flask-app:v0.1:${{ github.sha }}
     
     - name: Checkout code for the update
       uses: actions/checkout@v3
@@ -30,7 +30,7 @@ jobs:
     
     - name: Update Deployment Image Tag
       run: |
-        sed -i "s|${{ secrets.DOCKER_USERNAME }}/projet-flask-app-V0.1:.*|${{ secrets.DOCKER_USERNAME }}/projet-flask-app-V0.1:${{ github.sha }}|g" ./deployment/deployment.yaml
+        sed -i "s|${{ secrets.DOCKER_USERNAME }}/projet/flask-app:v0.1:.*|${{ secrets.DOCKER_USERNAME }}/projet/flask-app:v0.1:${{ github.sha }}|g" ./deployment/deployment.yaml
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git add .
