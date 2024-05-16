@@ -16,4 +16,3 @@ def test_validate_email(email, expected_result):
 
     # Assert
     assert result == expected_result
-

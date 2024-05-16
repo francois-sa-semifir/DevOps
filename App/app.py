@@ -12,15 +12,3 @@ app.register_blueprint(main_bp)
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
 
-"""
-Flask est importé depuis le module flask. 
-C'est la classe principale qui représente l'application Flask.
-
-Les blueprints (main_bp et admin_bp) sont importés depuis les modules des routes.
-
-Une instance de l'application Flask est créée avec Flask(__name__). __name__ représente le nom du module actuel.
-
-Les blueprints sont enregistrés dans l'application Flask avec app.register_blueprint().
-Cela monte les routes définies dans chaque blueprint dans l'application principale.
-
-"""

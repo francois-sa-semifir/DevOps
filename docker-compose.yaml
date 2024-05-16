@@ -1,8 +1,9 @@
 version: '3.8'
 services:
   flask:
-    image: flask-app
-    build: ./app
+    image: projet/flask-app:V0.1
+    build:
+      context: ./App
     ports:
       - "5000:5000"
     environment:

@@ -11,7 +11,7 @@ import os
 '''Création d'un objet Blueprint nommé 'main_bp' avec un préfixe d'URL '/' '''
 main_bp = Blueprint('main', __name__, url_prefix='/')
 
-'''Informations de connexion à MongoDB (à ne pas envoyer sur Github)'''
+'''Informations de connexion à MongoDB'''
 mongo_host = os.getenv('MONGO_HOST', 'localhost')
 mongo_port = int(os.getenv('MONGO_PORT', 27017))
 mongo_db = os.getenv('MONGO_DB', 'devops')
@@ -73,20 +73,6 @@ def add_user():
     collection.insert_one(user_data)
 
     return redirect('/')
-
-
-"""
-MongoClient est importé depuis pymongo pour se connecter à la base de données MongoDB.
-
-Nous créons une instance de MongoClient pour se connecter à la base de données MongoDB locale sur le port 27017.
-
-Nous sélectionnons la base de données devops et la collection users.
-
-Dans la fonction index(), nous utilisons collection.find() pour récupérer toutes les données de la collection users,
-en excluant le champ _id.
-
-Les données sont transmises à index.html en tant qu'argument users.
-"""
 
 """
 Explication de la regex :
