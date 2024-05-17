@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: flask-container
-          image: ashram939/projet-flask-v0.1:0c1d9b4d8a9588a4944e40b71baab24158f887b2
+          image: ashram939/projet-flask-v0.1:5c0919d42b114b790cad5e2891f34d57c2a1f7d3
           resources:
             requests:
               memory: 128Mi
