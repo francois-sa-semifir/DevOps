@@ -30,7 +30,7 @@ jobs:
     
     - name: Update Deployment Image Tag
       run: |
-        sed -i "s|${{ secrets.DOCKER_USERNAME }}/projet-flask-v0.1:.*|${{ secrets.DOCKER_USERNAME }}/projet-flask-v0.1:${{ github.sha }}|g" ./deployment/deployment.yaml
+        sed -i "s|${{ secrets.DOCKER_USERNAME }}/projet-flask-v0.1:.*|${{ secrets.DOCKER_USERNAME }}/projet-flask-v0.1:${{ github.sha }}|g" ./deployment/flask.yaml
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git add .
