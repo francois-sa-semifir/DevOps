@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: flask-container
-          image: ashram939/projet-flask-v0.1:0868426a07c0ff93e623ea7fa29a9ce74a27a2bb
+          image: ashram939/projet-flask-v0.1:1eea5d16e849cd09e71ae1c1e73d4b3fd2d8b540
           resources:
             requests:
               memory: 128Mi
@@ -59,12 +59,3 @@ spec:
                 secretKeyRef:
                   name: mongo-credentials
                   key: password
-          command: ["/bin/bash", "-c", "chmod +x /scripts/init.sh && /scripts/init.sh"]
-          volumeMounts:
-            - name: init-script
-              mountPath: /scripts
-              subPath: init.sh
-      volumes:
-        - name: init-script
-          configMap:
-            name: flask-init-script
