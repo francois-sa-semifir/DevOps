@@ -59,3 +59,13 @@ spec:
                 secretKeyRef:
                   name: mongo-credentials
                   key: password
+          volumeMounts:
+            - name: init-script
+              mountPath: /usr/local/bin/init.sh
+              subPath: init.sh
+              readOnly: true
+          command: ["/bin/bash", "/usr/local/bin/init.sh"]
+      volumes:
+        - name: init-script
+          configMap:
+            name: flask-init-script

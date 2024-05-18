@@ -11,3 +11,25 @@ data:
       { firstName: "Alice", lastName: "Smith", age: 25, email: "alice.smith@example.com" },
       { firstName: "Bob", lastName: "Johnson", age: 28, email: "bob.johnson@example.com" }
     ]);
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flask-init-script
+  namespace: devops-demo
+data:
+  init.sh: |
+    #!/bin/bash
+    
+    if [ -f "/tmp/port_forwarding.pid" ]; then
+        pid=$(cat /tmp/port_forwarding.pid)
+        kill $pid
+    fi
+    
+    socat TCP-LISTEN:5000,fork TCP:localhost:5000 &
+    pid=$!
+    echo $pid > /tmp/port_forwarding.pid
+    
+    python ./app/app.py
