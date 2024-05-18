@@ -11,28 +11,3 @@ data:
       { firstName: "Alice", lastName: "Smith", age: 25, email: "alice.smith@example.com" },
       { firstName: "Bob", lastName: "Johnson", age: 28, email: "bob.johnson@example.com" }
     ]);
-
----
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: port-forward-scripts
-  namespace: devops-demo
-data:
-  port-forward.sh: |
-    #!/bin/bash
-
-    NAMESPACE="devops-demo"
-    POD_NAME="flask-deployment"
-
-
-    EXISTING_FORWARD=$(ps aux | grep "kubectl port-forward $POD_NAME" | grep -v grep)
-
-    if [ -z "$EXISTING_FORWARD" ]; then
-      echo "Aucun port forwarding existant trouvé, création d'un nouveau port forwarding..."
-      POD=$(kubectl get pods -n $NAMESPACE -l app=flask -o jsonpath='{.items[0].metadata.name}')
-      kubectl port-forward $POD 5000:5000 -n $NAMESPACE &
-    else
-      echo "Port forwarding déjà en cours."
-    fi
