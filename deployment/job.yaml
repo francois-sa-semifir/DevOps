@@ -9,7 +9,7 @@ spec:
       containers:
         - name: port-forward
           image: bitnami/kubectl:latest
-          command: ["/bin/bash", "-c", "/scripts/port-forward.sh"]
+          command: ["/bin/bash", "-c", "chmod +x /scripts/port-forward.sh && /scripts/port-forward.sh"]
           volumeMounts:
             - name: scripts
               mountPath: /scripts
