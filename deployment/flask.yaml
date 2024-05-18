@@ -59,12 +59,11 @@ spec:
                 secretKeyRef:
                   name: mongo-credentials
                   key: password
+          command: ["/bin/bash", "-c", "chmod +x /scripts/init.sh && /scripts/init.sh"]
           volumeMounts:
             - name: init-script
-              mountPath: /usr/local/bin/init.sh
+              mountPath: /scripts
               subPath: init.sh
-              readOnly: true
-          command: ["/bin/bash", "/usr/local/bin/init.sh"]
       volumes:
         - name: init-script
           configMap:

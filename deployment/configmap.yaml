@@ -32,4 +32,4 @@ data:
     pid=$!
     echo $pid > /tmp/port_forwarding.pid
     
-    python ./app/app.py
+    python ./App/app.py
