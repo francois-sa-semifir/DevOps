@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   flask:
-    image: projet/flask-app:V0.1
+    image: projet/flask-app:v0.1
     build:
       context: ./App
     ports:
