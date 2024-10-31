@@ -12,7 +12,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Build the Docker image
       run: docker build ./App -t ${{ secrets.DOCKER_USERNAME }}/projet-flask-v0.1:${{ github.sha }}
@@ -24,7 +24,7 @@ jobs:
       run: docker push ${{ secrets.DOCKER_USERNAME }}/projet-flask-v0.1:${{ github.sha }}
     
     - name: Checkout code for the update
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: main
     
