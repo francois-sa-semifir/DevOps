@@ -1,3 +1,7 @@
 /App/routes/__pycache__
 /App/tests/__pycache__
 /.pytest_cache
+__pycache__/
+.env
+.DS_Store
+Thumbs.db
